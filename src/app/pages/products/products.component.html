@@ -1,4 +1,4 @@
-<section class="pt-12 min-h-screen bg-orange-100 flex flex-wrap justify-center items-center">
+<section class="pt-12 min-h-screen bg-orange-100 flex flex-wrap justify-center items-center" [ngClass]="(loading | async) ? 'hidden' : ''">
     <div *ngFor="let i of (endpointResult | async)?.products" class="p-5 w-1/5 flex justify-center items-center">
         <app-product [title]="i.title" [description]="i.description" [thumbnail]="i.thumbnail" [brand]="i.brand" [price]="i.price"></app-product>
     </div>
