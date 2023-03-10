@@ -9,6 +9,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+
 @NgModule({
     declarations: [ProductComponent, ProductsComponent],
     imports: [
@@ -17,6 +20,7 @@ import { MatBadgeModule } from '@angular/material/badge';
         MatCardModule,
         MatIconModule,
         MatBadgeModule,
+        StoreModule.forFeature('products', reducers),
     ],
 })
 export class ProductsModule {}

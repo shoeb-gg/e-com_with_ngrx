@@ -16,11 +16,6 @@ export class AppComponent implements OnInit {
     constructor(private productsService: ProductsService) {}
 
     ngOnInit(): void {
-        this.loading = this.productsService.loading$.pipe(
-            delay(0),
-            tap((res) => {
-                console.log(res);
-            })
-        );
+        this.loading = this.productsService.loading$.pipe(delay(0));
     }
 }
