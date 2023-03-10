@@ -5,6 +5,7 @@ import * as ProductActions from './actions';
 export const initialState: ProductStateInterface = {
     isLoading: false,
     products: [],
+    error: '',
 };
 
 export const reducers = createReducer(
@@ -12,5 +13,15 @@ export const reducers = createReducer(
     on(ProductActions.getProducts, (state) => ({
         ...state,
         isLoading: true,
+    })),
+    on(ProductActions.getProductsSucess, (state, action) => ({
+        ...state,
+        isLoading: false,
+        products: action.products,
+    })),
+    on(ProductActions.getProductsFailture, (state, action) => ({
+        ...state,
+        isLoading: false,
+        error: action.error,
     }))
 );

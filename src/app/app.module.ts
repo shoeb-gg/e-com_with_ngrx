@@ -21,6 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         StoreModule.forRoot({}, {}),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        EffectsModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -11,6 +11,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffects } from './store/effects';
 
 @NgModule({
     declarations: [ProductComponent, ProductsComponent],
@@ -21,6 +23,7 @@ import { reducers } from './store/reducers';
         MatIconModule,
         MatBadgeModule,
         StoreModule.forFeature('products', reducers),
+        EffectsModule.forFeature([ProductsEffects]),
     ],
 })
 export class ProductsModule {}
