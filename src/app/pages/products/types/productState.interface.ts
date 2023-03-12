@@ -3,3 +3,7 @@ export interface ProductStateInterface {
     products: any;
     error: string;
 }
+
+export interface CartInterface {
+    productId: number[];
+}

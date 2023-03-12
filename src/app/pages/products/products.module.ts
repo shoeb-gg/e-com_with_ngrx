@@ -8,9 +8,10 @@ import { ProductsComponent } from './products.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store/reducers';
+import { cartReducers, reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './store/effects';
 
@@ -22,7 +23,10 @@ import { ProductsEffects } from './store/effects';
         MatCardModule,
         MatIconModule,
         MatBadgeModule,
+        MatDialogModule,
+
         StoreModule.forFeature('products', reducers),
+        StoreModule.forFeature('cart', cartReducers),
         EffectsModule.forFeature([ProductsEffects]),
     ],
 })

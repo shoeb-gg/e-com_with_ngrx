@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
+import {
+    MatDialog,
+    MAT_DIALOG_DATA,
+    MatDialogRef,
+} from '@angular/material/dialog';
+import { CartDialogComponent } from 'src/app/shared/dialog/cart-dialog/cart-dialog.component';
+
 import { select, Store } from '@ngrx/store';
-import { map, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AppStateInterface } from 'src/app/types/appStateInterface';
 
 import { ProductsService } from './products.service';
 import * as ProductActions from './store/actions';
-import { isLoadingSelector } from './store/selectors';
+import { cartSelector } from './store/selectors';
 
 @Component({
     selector: 'app-products',
@@ -16,13 +23,14 @@ import { isLoadingSelector } from './store/selectors';
 export class ProductsComponent implements OnInit {
     endpointResult: Observable<any> | undefined;
     public loading: Observable<boolean> | undefined;
-    public loading$: Observable<boolean>;
+    public cart$: Observable<any>;
 
     constructor(
         private productsService: ProductsService,
-        private store: Store<AppStateInterface>
+        private store: Store<AppStateInterface>,
+        private dialog: MatDialog
     ) {
-        this.loading$ = this.store.pipe(select(isLoadingSelector));
+        this.cart$ = this.store.pipe(select(cartSelector));
     }
 
     ngOnInit(): void {
@@ -35,8 +43,24 @@ export class ProductsComponent implements OnInit {
                     this.productsService.loading$.next(false);
                 })
             );
-        }, 2000);
+        }, 500);
 
         this.store.dispatch(ProductActions.getProducts());
+        this.showCart();
+    }
+
+    addtoCart(event: number) {
+        this.store.dispatch(ProductActions.addToCart({ id: event }));
+    }
+
+    showCart() {
+        const dialogRef = this.dialog.open(CartDialogComponent, {
+            width: '55vw',
+            height: '80vh',
+            autoFocus: false,
+            disableClose: false,
+            hasBackdrop: true,
+            backdropClass: 'backdropBackground',
+        });
     }
 }
