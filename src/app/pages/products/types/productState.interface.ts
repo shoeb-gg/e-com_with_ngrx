@@ -5,5 +5,10 @@ export interface ProductStateInterface {
 }
 
 export interface CartInterface {
-    productId: number[];
+    productCount: productId[];
+}
+
+interface productId {
+    id: number;
+    count: number;
 }

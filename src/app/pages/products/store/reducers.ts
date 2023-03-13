@@ -6,13 +6,13 @@ import {
 import * as ProductActions from './actions';
 
 export const initialState: ProductStateInterface = {
-    isLoading: false,
+    isLoading: true,
     products: [],
     error: '',
 };
 
 export const initialCartInterface: CartInterface = {
-    productId: [],
+    productCount: [],
 };
 
 export const reducers = createReducer(
@@ -37,8 +37,25 @@ export const reducers = createReducer(
 
 export const cartReducers = createReducer(
     initialCartInterface,
-    on(ProductActions.addToCart, (state, action) => ({
-        ...state,
-        productId: [...state.productId, action.id],
-    }))
+    on(ProductActions.addToCart, (state, action) => {
+        const existing = state.productCount.findIndex((val) => {
+            return val.id === action.id;
+        });
+        // console.log(existing);
+
+        if (existing !== -1) {
+            let count = state.productCount[existing].count;
+            // console.log(state.productCount[existing]);
+
+            state.productCount[existing] = { id: action.id, count: count + 1 };
+            return { ...state };
+        } else {
+            return {
+                productCount: [
+                    ...state.productCount,
+                    { id: action.id, count: 1 },
+                ],
+            };
+        }
+    })
 );

@@ -18,7 +18,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         BrowserAnimationsModule,
         SharedModule,
         HttpClientModule,
-        StoreModule.forRoot({}, {}),
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false,
+                },
+            }
+        ),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
         EffectsModule.forRoot(),

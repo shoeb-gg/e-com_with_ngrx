@@ -8,8 +8,6 @@ import { BehaviorSubject } from 'rxjs';
 export class ProductsService {
     constructor(private http: HttpClient) {}
 
-    loading$ = new BehaviorSubject<boolean>(false);
-
     getAllProducts() {
         return this.http.get('https://dummyjson.com/products');
     }

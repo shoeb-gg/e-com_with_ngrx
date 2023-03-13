@@ -19,5 +19,5 @@ export const errorSelector = createSelector(
 
 export const cartSelector = createSelector(
     selectCartFeature,
-    (state) => state.productId
+    (state) => state.productCount
 );

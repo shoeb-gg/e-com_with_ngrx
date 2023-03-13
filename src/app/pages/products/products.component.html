@@ -1,7 +1,6 @@
-<section class="pt-12 min-h-screen bg-orange-100 flex flex-wrap justify-center items-center" [ngClass]="(loading | async) ? 'hidden' : ''">
-    <div *ngFor="let i of (endpointResult | async)?.products" class="p-5 w-1/5 flex justify-center items-center">
+<section class="pt-12 min-h-screen bg-orange-100 flex flex-wrap justify-center items-center relative" [ngClass]="(isLoadingSelector$ | async) ? 'hidden' : ''">
+    <div *ngFor="let i of (products$ | async)?.products" class="p-5 w-1/4 flex justify-center items-center">
         <app-product
-            (click)="showCart()"
             [id]="i.id"
             [title]="i.title"
             [description]="i.description"
@@ -11,4 +10,21 @@
             (emitId)="addtoCart($event)"
         ></app-product>
     </div>
+
+    <div class="fixed bottom-5 right-5 w-12 h-12">
+        <button
+            mat-mini-fab
+            color="primary"
+            (click)="showCart()"
+            matBadge="{{ (cart$ | async).length }}"
+            matBadgeSize="medium"
+            matBadgeHidden="{{ !(cart$ | async).length }}"
+            matBadgeColor="warn"
+        >
+            <mat-icon>shopping_cart</mat-icon>
+        </button>
+    </div>
 </section>
+<div *ngIf="isLoadingSelector$ | async" class="pt-12 h-screen w-full flex flex-col justify-center items-center bg-orange-100">
+    <mat-spinner></mat-spinner>
+</div>

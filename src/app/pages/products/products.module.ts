@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { StoreModule } from '@ngrx/store';
 import { cartReducers, reducers } from './store/reducers';
@@ -24,6 +26,8 @@ import { ProductsEffects } from './store/effects';
         MatIconModule,
         MatBadgeModule,
         MatDialogModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
 
         StoreModule.forFeature('products', reducers),
         StoreModule.forFeature('cart', cartReducers),

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, Observable, tap } from 'rxjs';
-
-import { ProductsService } from './pages/products/products.service';
 
 @Component({
     selector: 'app-root',
@@ -11,11 +8,7 @@ import { ProductsService } from './pages/products/products.service';
 export class AppComponent implements OnInit {
     title = 'e-com';
 
-    public loading: Observable<any> | undefined;
+    constructor() {}
 
-    constructor(private productsService: ProductsService) {}
-
-    ngOnInit(): void {
-        this.loading = this.productsService.loading$.pipe(delay(0));
-    }
+    ngOnInit(): void {}
 }
