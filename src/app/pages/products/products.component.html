@@ -1,5 +1,5 @@
 <section class="pt-12 min-h-screen bg-orange-100 flex flex-wrap justify-center items-center relative" [ngClass]="(isLoadingSelector$ | async) ? 'hidden' : ''">
-    <div *ngFor="let i of (products$ | async)?.products" class="p-5 w-1/5 flex justify-center items-center">
+    <div *ngFor="let i of (products$ | async)?.products" class="p-5 lg:p-6 xl:w-1/5 w-1/4 flex justify-center items-center">
         <app-product
             [id]="i.id"
             [title]="i.title"

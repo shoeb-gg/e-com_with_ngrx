@@ -41,11 +41,9 @@ export const cartReducers = createReducer(
         const existing = state.productCount.findIndex((val) => {
             return val.id === action.id;
         });
-        // console.log(existing);
 
         if (existing !== -1) {
             let count = state.productCount[existing].count;
-            // console.log(state.productCount[existing]);
 
             state.productCount[existing] = { id: action.id, count: count + 1 };
             return { ...state };
@@ -65,7 +63,6 @@ export const cartReducers = createReducer(
         });
 
         let count = state.productCount[existing].count;
-        // console.log(state.productCount[existing]);
 
         if (count === 1) {
             state.productCount.splice(existing, 1);
