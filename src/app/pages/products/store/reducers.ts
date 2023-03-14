@@ -57,5 +57,33 @@ export const cartReducers = createReducer(
                 ],
             };
         }
+    }),
+
+    on(ProductActions.deleteFromCart, (state, action) => {
+        const existing = state.productCount.findIndex((val) => {
+            return val.id === action.id;
+        });
+
+        let count = state.productCount[existing].count;
+        // console.log(state.productCount[existing]);
+
+        if (count === 1) {
+            state.productCount.splice(existing, 1);
+            return { ...state };
+        } else if (count > 1) {
+            state.productCount[existing] = { id: action.id, count: count - 1 };
+            return { ...state };
+        } else {
+            return { ...state };
+        }
+    }),
+
+    on(ProductActions.removeEntireProductFromCart, (state, action) => {
+        const existing = state.productCount.findIndex((val) => {
+            return val.id === action.id;
+        });
+        state.productCount.splice(existing, 1);
+
+        return { ...state };
     })
 );

@@ -16,3 +16,13 @@ export const addToCart = createAction(
     '[Cart] Adding Products to Cart',
     props<{ id: number }>()
 );
+
+export const deleteFromCart = createAction(
+    '[Cart] Deleting Products from Cart',
+    props<{ id: number }>()
+);
+
+export const removeEntireProductFromCart = createAction(
+    '[Cart] Removing Entire Product from Cart',
+    props<{ id: number }>()
+);

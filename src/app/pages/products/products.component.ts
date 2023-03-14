@@ -4,10 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CartDialogComponent } from 'src/app/shared/dialog/cart-dialog/cart-dialog.component';
 
 import { select, Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AppStateInterface } from 'src/app/types/appStateInterface';
 
-import { ProductsService } from './products.service';
 import * as ProductActions from './store/actions';
 import {
     cartSelector,
@@ -42,6 +41,14 @@ export class ProductsComponent implements OnInit {
 
     addtoCart(event: number) {
         this.store.dispatch(ProductActions.addToCart({ id: event }));
+    }
+    deleteFromCart(event: number) {
+        this.store.dispatch(ProductActions.deleteFromCart({ id: event }));
+    }
+    clearProductFromCart(event: number) {
+        this.store.dispatch(
+            ProductActions.removeEntireProductFromCart({ id: event })
+        );
     }
 
     showCart() {

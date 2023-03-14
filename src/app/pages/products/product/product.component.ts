@@ -12,15 +12,25 @@ export class ProductComponent {
     @Input() thumbnail: String = '';
     @Input() description: String = '';
     @Input() price: Number = 0;
-    @Output() emitId = new EventEmitter<number>();
+    @Output() addId = new EventEmitter<number>();
+    @Output() removeId = new EventEmitter<number>();
+    @Output() clearFromCartId = new EventEmitter<number>();
 
     badgeCount = 0;
 
     increaseBadgeCount() {
         this.badgeCount++;
-        this.emitId.emit(this.id);
+        this.addId.emit(this.id);
     }
     decreaseBadgeCount() {
-        if (this.badgeCount != 0) this.badgeCount--;
+        if (this.badgeCount != 0) {
+            this.removeId.emit(this.id);
+            this.badgeCount--;
+        }
+    }
+
+    clearProductFromCart() {
+        this.badgeCount = 0;
+        this.clearFromCartId.emit(this.id);
     }
 }

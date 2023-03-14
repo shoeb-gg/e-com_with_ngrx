@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import { AppStateInterface } from 'src/app/types/appStateInterface';
@@ -14,18 +13,47 @@ import {
     templateUrl: './cart-dialog.component.html',
     styleUrls: ['./cart-dialog.component.scss'],
 })
-export class CartDialogComponent implements OnInit {
-    public products$: Observable<any>;
+export class CartDialogComponent implements OnInit, OnDestroy {
+    public products$: Subscription;
     public cart$: Observable<any>;
+    public products: any;
+    public cartProducts: any;
+    public detailedCart: any[] = [];
 
     constructor(private store: Store<AppStateInterface>) {
         this.cart$ = this.store.pipe(select(cartSelector));
-        this.products$ = this.store.pipe(select(productsSelector));
+
+        this.products$ = this.store
+            .pipe(select(productsSelector))
+            .subscribe((res) => {
+                this.products = res.products;
+            });
     }
 
     ngOnInit(): void {
         this.cart$.subscribe((res) => {
-            console.log(res);
+            this.cartProducts = res;
         });
+
+        this.setupCart();
+    }
+
+    setupCart() {
+        this.cartProducts.forEach((val: any) => {
+            let e = this.products.find((el: any) => el.id === val.id);
+
+            this.detailedCart.push({
+                title: e.title,
+                brand: e.brand,
+                count: val.count,
+                imgUrl: e.thumbnail,
+            });
+        });
+
+        console.log(this.detailedCart);
+    }
+
+    ngOnDestroy(): void {
+        this.products$.unsubscribe();
     }
 }
