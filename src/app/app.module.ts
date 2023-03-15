@@ -2,6 +2,8 @@ import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import { EnvServiceProvider } from './env.service.provider';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,7 +33,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
         EffectsModule.forRoot(),
     ],
-    providers: [],
+    providers: [EnvServiceProvider],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { EnvService } from 'src/app/env.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProductsService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private env: EnvService) {}
+
+    apiUrl = this.env.apiUrl;
 
     getAllProducts() {
+        console.log(this.apiUrl);
+
         return this.http.get('https://dummyjson.com/products');
     }
 }
