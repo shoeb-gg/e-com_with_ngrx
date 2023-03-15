@@ -2,14 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/products', pathMatch: 'full' },
+    { path: '', redirectTo: '/new', pathMatch: 'full' },
 
     {
-        path: 'products',
+        path: '',
         loadChildren: () =>
-            import('./pages/products/products.module').then(
-                (m) => m.ProductsModule
-            ),
+            import('./pages/pages.module').then((m) => m.PagesModule),
     },
 ];
 
