@@ -25,7 +25,7 @@ export const reducers = createReducer(
     on(ProductActions.getProductsSucess, (state, action) => ({
         ...state,
         isLoading: false,
-        products: action.products,
+        products: action,
     })),
 
     on(ProductActions.getProductsFailture, (state, action) => ({

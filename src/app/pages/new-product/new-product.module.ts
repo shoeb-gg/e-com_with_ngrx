@@ -8,6 +8,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [AddProductComponent],
@@ -19,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatIconModule,
         MatCardModule,
+        MatButtonModule,
     ],
 })
 export class NewProductModule {}

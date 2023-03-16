@@ -2,9 +2,9 @@
     <div *ngFor="let i of (products$ | async)?.products" class="p-5 lg:p-6 xl:w-1/5 w-1/4 flex justify-center items-center">
         <app-product
             [id]="i.id"
-            [title]="i.title"
+            [title]="i.name"
             [description]="i.description"
-            [thumbnail]="i.thumbnail"
+            [thumbnail]="i.imageUrl"
             [brand]="i.brand"
             [price]="i.price"
             (addId)="addtoCart($event)"

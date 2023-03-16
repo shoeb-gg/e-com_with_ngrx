@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/models/Product';
+import { NewProductService } from '../new-product.service';
 
 @Component({
     selector: 'app-add-product',
@@ -8,10 +10,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent implements OnInit {
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private newProductService: NewProductService
+    ) {}
 
     public profileForm: FormGroup;
-    public value: any;
+
+    public productArray: Product[] = [];
 
     ngOnInit(): void {
         this.initForm();
@@ -19,13 +25,27 @@ export class AddProductComponent implements OnInit {
 
     initForm() {
         this.profileForm = this.fb.group({
-            name: [''],
-            brand: [''],
-            description: [''],
-            price: [''],
-            imgUrl: [
-                'https://w0.peakpx.com/wallpaper/495/863/HD-wallpaper-random-awesome-blue-games-nerds-red.jpg',
-            ],
+            Name: ['', Validators.required],
+            Brand: ['', Validators.required],
+            Description: ['', Validators.required],
+            Price: [0, Validators.required],
+            ImageUrl: ['', Validators.required],
         });
+    }
+
+    createProduct() {
+        this.newProductService
+            .createProduct(this.profileForm.value)
+            .subscribe((res) => {
+                console.log(res);
+            });
+    }
+
+    createMultipleProduct() {
+        this.newProductService
+            .createMultipleProduct(this.productArray)
+            .subscribe((res) => {
+                console.log(res);
+            });
     }
 }

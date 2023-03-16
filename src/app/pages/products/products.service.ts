@@ -13,6 +13,6 @@ export class ProductsService {
     getAllProducts() {
         console.log(this.apiUrl);
 
-        return this.http.get('https://dummyjson.com/products');
+        return this.http.get(this.apiUrl + 'Product');
     }
 }

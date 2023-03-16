@@ -37,6 +37,10 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(ProductActions.getProducts());
+
+        this.products$.subscribe((res) => {
+            console.log(res);
+        });
     }
 
     addtoCart(event: number) {
