@@ -11,8 +11,6 @@ export class ProductsService {
     apiUrl = this.env.apiUrl;
 
     getAllProducts() {
-        console.log(this.apiUrl);
-
-        return this.http.get(this.apiUrl + 'Product');
+        return this.http.get(this.apiUrl + 'products');
     }
 }

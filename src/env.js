@@ -2,7 +2,7 @@
     window.__env = window.__env || {};
 
     // API url
-    window.__env.apiUrl = "https://localhost:7106/api/";
+    window.__env.apiUrl = "https://fakestoreapi.com/";
 
     // Whether or not to enable debug mode
     // Setting this to false will disable console output

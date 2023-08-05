@@ -37,10 +37,6 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(ProductActions.getProducts());
-
-        this.products$.subscribe((res) => {
-            console.log(res);
-        });
     }
 
     addtoCart(event: number) {
@@ -56,7 +52,7 @@ export class ProductsComponent implements OnInit {
     }
 
     showCart() {
-        const dialogRef = this.dialog.open(CartDialogComponent, {
+        this.dialog.open(CartDialogComponent, {
             width: '55vw',
             height: '80vh',
             autoFocus: false,

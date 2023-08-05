@@ -44,13 +44,10 @@ export class CartDialogComponent implements OnInit, OnDestroy {
 
             this.detailedCart.push({
                 title: e.title,
-                brand: e.brand,
                 count: val.count,
-                imgUrl: e.thumbnail,
+                imgUrl: e.image,
             });
         });
-
-        console.log(this.detailedCart);
     }
 
     ngOnDestroy(): void {

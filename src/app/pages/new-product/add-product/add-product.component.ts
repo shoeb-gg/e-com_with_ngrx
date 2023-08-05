@@ -26,7 +26,6 @@ export class AddProductComponent implements OnInit {
     initForm() {
         this.profileForm = this.fb.group({
             Name: ['', Validators.required],
-            Brand: ['', Validators.required],
             Description: ['', Validators.required],
             Price: [0, Validators.required],
             ImageUrl: ['', Validators.required],
